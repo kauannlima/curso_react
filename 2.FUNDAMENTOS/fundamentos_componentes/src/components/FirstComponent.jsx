@@ -1,4 +1,8 @@
+// arquvivo de estilo
+
 const FirstComponent = () =>{
+// essa função faz isso
+
 
     return(
         <div>
