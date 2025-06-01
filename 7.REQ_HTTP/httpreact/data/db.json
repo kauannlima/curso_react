@@ -24,6 +24,16 @@
       "id": "5",
       "name": "Boné",
       "price": 39.9
+    },
+    {
+      "id": "f1f8",
+      "name": "Guarda-Chuva",
+      "price": "30"
+    },
+    {
+      "id": "a45f",
+      "name": "Teclado",
+      "price": "250"
     }
   ]
 }
