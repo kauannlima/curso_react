@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 
 // 4 - CUSTOM HOOK
 export const useFetch = (url) => {
@@ -9,8 +9,11 @@ export const useFetch = (url) => {
     const [method, setMethod] = useState(null);
     const [callFetch, setCallFetch] = useState(false);
 
-    // 6 LOADING
+    // 6 - LOADING
     const [loading, setLoading] = useState(false);
+
+    // 7 - TRATANDO ERROS
+    const [error, setError] = useState(null)
 
     const httpConfig = (data, method) => {
         if (method === "POST") {
@@ -28,18 +31,21 @@ export const useFetch = (url) => {
     }
 
     useEffect(() => {
-
         const fetchData = async () => {
-
             // 6 - LOADING
             setLoading(true)
 
-
+            try{
+                
             const res = await fetch(url)
 
             const json = await res.json()
 
             setData(json)
+            }catch(error){
+                console.log(error.message);
+                setError("Houve um erro ao carregar os dados!")
+            }
 
             setLoading(false)
         }
@@ -62,5 +68,5 @@ export const useFetch = (url) => {
         }; httpRequest()
     }, [config, method, url])
 
-    return { data, httpConfig , loading};
+    return { data, httpConfig , loading, error};
 }

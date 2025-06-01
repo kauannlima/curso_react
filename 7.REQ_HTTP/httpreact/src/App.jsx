@@ -10,11 +10,8 @@ function App() {
   const [products, setProducts] = useState([]);
 
   // 4 - CUSTOM HOOK
-  const {data: items, httpConfig, loading} =useFetch(url);
+  const { data: items, httpConfig, loading, error } = useFetch(url);
 
-
-
-  const [name, setName] = useState("");
   const [price, setPrice] = useState("");
 
 
@@ -36,7 +33,7 @@ function App() {
 
   // 2 - ADD PRODUTOS
   const handleSubmit = async (e) => {
-    e.preventDefault() 
+    e.preventDefault()
 
     const product = {
       name,
@@ -67,14 +64,17 @@ function App() {
     <div className="App">
       <h1>Lista de Produtos</h1>
       {/* 6 - LOADING */}
-      {loading&& <p>Carregando dados...</p>}
-    {!loading &&  <ul>
-        {items && items.map((product) => (
-          <li key={product.id}>
-            {product.name} - R$: {product.price}
-          </li>
-        ))}
-      </ul>}
+      {loading && <p>Carregando dados...</p>}
+      {error && <p>{error}</p>}
+      {!loading && (
+        <ul>
+          {items && items.map((product) => (
+            <li key={product.id}>
+              {product.name} - R$: {product.price}
+            </li>
+          ))}
+        </ul>
+      )}
       <div className="add-product">
         <form onSubmit={handleSubmit}>
           <label>
@@ -86,8 +86,8 @@ function App() {
             <input type="number" value={price} name="price" onChange={(e) => setPrice(e.target.value)} />
           </label>
           {/* 7 - STATE DE LOADING NO POST */}
-          {loading &&  <input type="submit" disabled value="Aguarde" />}
-         {!loading &&  <input type="submit" value="Criar Produto" />}
+          {loading && <input type="submit" disabled value="Aguarde" />}
+          {!loading && <input type="submit" value="Criar Produto" />}
         </form>
       </div>
     </div>
