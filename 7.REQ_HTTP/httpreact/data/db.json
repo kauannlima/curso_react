@@ -34,6 +34,26 @@
       "id": "a45f",
       "name": "Teclado",
       "price": "250"
+    },
+    {
+      "id": "b800",
+      "name": "Mouse",
+      "price": "90"
+    },
+    {
+      "id": "2ffa",
+      "name": "Suporte Monitor",
+      "price": "120"
+    },
+    {
+      "id": "0ace",
+      "name": "Cabo HDMI",
+      "price": "10"
+    },
+    {
+      "id": "ab59",
+      "name": "Suporte de Microfone",
+      "price": "50"
     }
   ]
 }

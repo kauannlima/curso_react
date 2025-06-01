@@ -10,7 +10,7 @@ function App() {
   const [products, setProducts] = useState([]);
 
   // 4 - CUSTOM HOOK
-  const {data: items} =useFetch(url);
+  const {data: items, httpConfig, loading} =useFetch(url);
 
 
 
@@ -43,17 +43,20 @@ function App() {
       price
     };
 
-    const res = await fetch(url, {
-      method: "POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body: JSON.stringify(product),
-    });
+    // const res = await fetch(url, {
+    //   method: "POST",
+    //   headers:{
+    //     "Content-Type":"application/json"
+    //   },
+    //   body: JSON.stringify(product),
+    // });
 
-    // 3 - CARREGAMENTO DINÂMICO
-    const addedProduct = await res.json()
-    setProducts((prevProducts) => [...prevProducts,addedProduct ])
+    // // 3 - CARREGAMENTO DINÂMICO
+    // const addedProduct = await res.json()
+    // setProducts((prevProducts) => [...prevProducts,addedProduct ])
+
+    // 5 - REFATORANDO POST
+    httpConfig(product, "POST");
 
     setName("");
     setPrice("");
@@ -63,13 +66,15 @@ function App() {
   return (
     <div className="App">
       <h1>Lista de Produtos</h1>
-      <ul>
+      {/* 6 - LOADING */}
+      {loading&& <p>Carregando dados...</p>}
+    {!loading &&  <ul>
         {items && items.map((product) => (
           <li key={product.id}>
             {product.name} - R$: {product.price}
           </li>
         ))}
-      </ul>
+      </ul>}
       <div className="add-product">
         <form onSubmit={handleSubmit}>
           <label>
@@ -80,7 +85,9 @@ function App() {
             Preço:
             <input type="number" value={price} name="price" onChange={(e) => setPrice(e.target.value)} />
           </label>
-          <input type="submit" value="Criar Produto" />
+          {/* 7 - STATE DE LOADING NO POST */}
+          {loading &&  <input type="submit" disabled value="Aguarde" />}
+         {!loading &&  <input type="submit" value="Criar Produto" />}
         </form>
       </div>
     </div>
