@@ -14,8 +14,6 @@ function App() {
 
   const [price, setPrice] = useState("");
 
-
-
   // 1 - RESGATANDO DADOS
   // useEffect(() => {
   //   async function fetchData() {
@@ -28,16 +26,16 @@ function App() {
   //     }
   //   }
 
-  //   fetchData(); 
+  //   fetchData();
   // }, []);
 
   // 2 - ADD PRODUTOS
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const product = {
       name,
-      price
+      price,
     };
 
     // const res = await fetch(url, {
@@ -57,8 +55,12 @@ function App() {
 
     setName("");
     setPrice("");
-  }
+  };
 
+  // 8 - DESAFIO
+  const handleRemove = (id) => {
+    httpConfig(id, "DELETE");
+  };
 
   return (
     <div className="App">
@@ -68,22 +70,36 @@ function App() {
       {error && <p>{error}</p>}
       {!loading && (
         <ul>
-          {items && items.map((product) => (
-            <li key={product.id}>
-              {product.name} - R$: {product.price}
-            </li>
-          ))}
+          {items &&
+            items.map((product) => (
+              <li key={product.id}>
+                {product.name} - R$: {product.price}
+                <button onClick={() => handleRemove(product.id)}>
+                  Excluir
+                </button>
+              </li>
+            ))}
         </ul>
       )}
       <div className="add-product">
         <form onSubmit={handleSubmit}>
           <label>
             Nome:
-            <input type="text" value={name} name="name" onChange={(e) => setName(e.target.value)} />
+            <input
+              type="text"
+              value={name}
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+            />
           </label>
           <label>
             Preço:
-            <input type="number" value={price} name="price" onChange={(e) => setPrice(e.target.value)} />
+            <input
+              type="number"
+              value={price}
+              name="price"
+              onChange={(e) => setPrice(e.target.value)}
+            />
           </label>
           {/* 7 - STATE DE LOADING NO POST */}
           {loading && <input type="submit" disabled value="Aguarde" />}
