@@ -1,0 +1,19 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Tênis Esportivo",
+      "price": 249.9
+    },
+    {
+      "id": "2",
+      "name": "Jaqueta Corta-Vento",
+      "price": 199
+    },
+    {
+      "id": "3",
+      "name": "Boné",
+      "price": 39.9
+    }
+  ]
+}
