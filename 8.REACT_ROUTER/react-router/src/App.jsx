@@ -34,7 +34,7 @@ function App() {
           {/* 9 - SEARCH*/}
           <Route path="/search" element={<Search />} />
           {/* 10 - REDIRECT*/}
-          <Route path="/company" element={<Navigate to="/about" />} />
+          <Route path="/ " element={<Navigate to="/about" />} />
           {/* 7 - NO MATCH ROUTE*/}
           <Route path="*" element={<NotFound />} />
         </Routes>
