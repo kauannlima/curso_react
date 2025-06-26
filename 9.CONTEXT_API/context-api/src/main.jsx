@@ -1,10 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
 
-createRoot(document.getElementById('root')).render(
+import { CounterContextProvider } from "./context/CounterContext";
+import { TitleColorContextProvider } from "./context/TitleColorContext";
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    {/* 2 - CRIANDO O PROVIDER*/}
+    <CounterContextProvider>
+      <TitleColorContextProvider>
+        <App />
+      </TitleColorContextProvider>
+    </CounterContextProvider>
+  </StrictMode>
+);
