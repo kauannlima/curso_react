@@ -26,6 +26,7 @@ export const useAuthentication = () => {
     }
   }
 
+  //REGISTER
   const createUser = async (data) => {
     checkIfIsCancelled();
 
@@ -62,6 +63,44 @@ export const useAuthentication = () => {
     }
   };
 
+  // LOGOUT - SIGN OUT
+  const logout = () => {
+    checkIfIsCancelled();
+
+    signOut(auth);
+  };
+
+  //LOGIN - SIGN IN
+  const login = async (data) => {
+    checkIfIsCancelled();
+
+    setLoading(true);
+    setErrors(false);
+
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      setLoading(false);
+    } catch (error) {
+      let systemErrorMessage;
+
+      console.log(error.message);
+      console.log(typeof error.message);
+
+      // O firebase não valida erros separados para user e password
+      if (error.message.includes("invalid")) {
+        systemErrorMessage =
+          "Não foi possível fazer login. Verifique suas credenciais.";
+        // } else if (error.message.includes("wrong")) {
+        //   systemErrorMessage = "Senha incorreta";
+      } else {
+        systemErrorMessage = "Ocorreu um erro, por favor tente mais tarde.";
+      }
+
+      setErrors(systemErrorMessage);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     return () => setCancelled(true);
   }, []);
@@ -71,5 +110,7 @@ export const useAuthentication = () => {
     createUser,
     error,
     loading,
+    logout,
+    login,
   };
 };
