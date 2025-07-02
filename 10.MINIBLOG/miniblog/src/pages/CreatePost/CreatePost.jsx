@@ -9,34 +9,47 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
-  const [tags, setTags] = useState("");
+  const [tags, setTags] = useState([]);
   const [formError, setFormError] = useState("");
 
   const { user } = useAuthValue();
 
   const { insertDocument, response } = useInsertDocument("posts");
 
-  console.log("Response do hook:", response);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormError("");
 
     //VALIDATE IMAGE URL
+    try {
+      new URL(image);
+    } catch (error) {
+      setFormError("A imamgem precisa ser uma URL.");
+    }
 
     //CRIAR O ARRAY DE TAGS
+    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
 
     //CHECAR TODOS OS VALORES
+    if (!title || !image || !tags || !body) {
+      setFormError("Por favor, preencha todos os campos!");
+    }
+
+    if (formError) return;
+
     insertDocument({
       title,
       image,
       body,
-      tags,
+      tagsArray,
       uid: user.uid,
       createdBy: user.displayName,
-
-      //REDIRECT TO HOME PAGE
     });
+
+    //REDIRECT TO HOME PAGE
+    navigate("/");
   };
 
   return (
@@ -94,6 +107,7 @@ const CreatePost = () => {
           </button>
         )}
         {response.error && <p className="error">{response.error}</p>}
+        {formError && <p className="error">{formError}</p>}
       </form>
     </div>
   );
