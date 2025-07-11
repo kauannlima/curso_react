@@ -102,9 +102,12 @@ const CreatePost = () => {
         </label>
         {!response.loading && <button className="btn">Cadastrar</button>}
         {response.loading && (
-          <button className="btn" disabled>
-            Aguarde...
-          </button>
+          <OrbitProgress
+            color="#32cd32"
+            size="medium"
+            text="Carregando..."
+            textColor=""
+          />
         )}
         {response.error && <p className="error">{response.error}</p>}
         {formError && <p className="error">{formError}</p>}

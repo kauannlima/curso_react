@@ -1,4 +1,9 @@
-.container {
-  min-height: 60vh;
-  margin-bottom: 5em;
+@import "tailwindcss";
+body,
+html {
+  font-family: "Inter", sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
