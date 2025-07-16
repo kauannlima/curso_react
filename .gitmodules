@@ -1,3 +1,6 @@
 [submodule "miniblog"]
 	path = miniblog
 	url = https://github.com/kauannlima/miniblog
+[submodule "10.MINIBLOG/miniblog"]
+	path = 10.MINIBLOG/miniblog
+	url = https://github.com/kauannlima/miniblog
