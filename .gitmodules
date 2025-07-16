@@ -1,0 +1,3 @@
+[submodule "miniblog"]
+	path = miniblog
+	url = https://github.com/kauannlima/miniblog
