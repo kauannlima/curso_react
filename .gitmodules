@@ -1,9 +1,6 @@
-[submodule "miniblog"]
-	path = miniblog
-	url = https://github.com/kauannlima/miniblog
 [submodule "10.MINIBLOG/miniblog"]
 	path = 10.MINIBLOG/miniblog
 	url = https://github.com/kauannlima/miniblog
-[submodule "12.REACTGRAM/12.REACTGRAM/reactgram-backend"]
-	path = 12.REACTGRAM/12.REACTGRAM/reactgram-backend
+[submodule "12.REACTGRAM/reactgram-backend"]
+	path = 12.REACTGRAM/reactgram-backend
 	url = https://github.com/kauannlima/reactgram-backend
