@@ -4,3 +4,6 @@
 [submodule "12.REACTGRAM/reactgram-backend"]
 	path = 12.REACTGRAM/reactgram-backend
 	url = https://github.com/kauannlima/reactgram-backend
+[submodule "12.REACTGRAM/reactgram-frontend"]
+	path = 12.REACTGRAM/reactgram-frontend
+	url = https://github.com/kauannlima/reactgram-frontend
