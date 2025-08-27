@@ -7,11 +7,24 @@ import Destructuring, { Category } from "./components/Destructuring";
 
 // 6 - useState
 import State from "./components/State";
+import { createContext } from "react";
+
+// 10 - utilizando contexto
+import Context from "./components/Context";
 
 // 8 - type
 type textOrNull = string | null;
 
-type fixed = "Isso" | "Ou" | "Aquilo"
+type fixed = "Isso" | "Ou" | "Aquilo";
+
+// 9 - context
+interface IAppContext {
+  language: string;
+  framework: string;
+  projects: number;
+}
+
+export const AppContext = createContext<IAppContext | null>(null);
 
 function App() {
   // 1 - variaveis
@@ -28,12 +41,19 @@ function App() {
   const myText: textOrNull = "Tem algum texto aqui";
   let mySecondText: textOrNull = null;
 
-  mySecondText = "Opa";
+  // mySecondText = "Opa";
 
-  const testandoFixed: fixed = "Isso"
+  const testandoFixed: fixed = "Isso";
+
+  // 9 - context
+  const contextValue: IAppContext = {
+    language: "JavaScript",
+    framework: "Express",
+    projects: 5,
+  };
 
   return (
-    <>
+    <AppContext.Provider value={contextValue}>
       <div>
         <h1>TypeScript com React</h1>
         <h2>Nome: {name}</h2>
@@ -59,8 +79,9 @@ function App() {
         <State />
         {myText && <p>Tem texto na variável</p>}
         {mySecondText && <p>Tem texto na variável</p>}
+        <Context />
       </div>
-    </>
+    </AppContext.Provider>
   );
 }
 
